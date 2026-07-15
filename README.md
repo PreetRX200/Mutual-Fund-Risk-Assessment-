@@ -1,4 +1,4 @@
-# Mutual Fund Risk Dashboard 🚀
+# Mutual Fund Risk Dashboard 
 
 A highly responsive, advanced Mutual Fund AI dashboard and analytics platform driven by a machine-learning backend (XGBoost) and a beautifully designed glassmorphism frontend. Provides detailed Mutual Fund recommendations, "What-If" scenario simulations, and concurrent real-time Portfolio analysis using external data integration.
 
