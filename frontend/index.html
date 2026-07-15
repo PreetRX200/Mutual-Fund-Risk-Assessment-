@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clarity — Mutual Fund AI</title>
+  <meta name="description" content="AI-powered mutual fund risk analysis and goal-based recommendations. See through the noise and invest with precision.">
+
+  <!-- Fonts via CSS import in style.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+
+  <!-- Design system -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Lucide icons (outline, consistent stroke) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+
+<body>
+  <!-- ─── NAVBAR ──────────────────────────────────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-brand">Clarity</a>
+      <ul class="nav-links" role="list">
+        <li><a href="#" data-nav="hero"      class="active">Home</a></li>
+        <li><a href="#" data-nav="results"            >Recommendations</a></li>
+        <li><a href="#" data-nav="portfolio"          >Portfolio</a></li>
+        <li><a href="#" data-nav="whatif"             >Model Playground</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ─── OVERLAY BACKDROP ────────────────────────────────────────────────── -->
+  <div id="overlay-backdrop" aria-hidden="true"></div>
+
+  <!-- ─── MAIN ────────────────────────────────────────────────────────────── -->
+  <main class="main-content">
+
+    <!-- ── VIEW: HERO ───────────────────────────────────────────────────── -->
+    <section id="view-hero" aria-label="Hero">
+      <div class="hero-section">
+        <!-- Ambient shapes (animated by GSAP) -->
+        <div class="hero-shapes" aria-hidden="true">
+          <div class="hero-shape hero-shape-1"></div>
+          <div class="hero-shape hero-shape-2"></div>
+          <div class="hero-shape hero-shape-3"></div>
+          <div class="hero-shape hero-shape-4"></div>
+        </div>
+
+        <!-- Content -->
+        <div class="hero-content">
+          <h1 class="hero-title hero-entrance">
+            Invest with clarity,<br>not guesswork.
+          </h1>
+          <p class="hero-sub hero-entrance">
+            AI-powered risk analysis meets goal-based fund matching —
+            built on XGBoost, grounded in data.
+          </p>
+          <button class="btn-primary hero-entrance" id="cta-btn">
+            Get started
+          </button>
+
+          <div class="hero-stats hero-entrance">
+            <div class="hero-stat-item">
+              <span class="hero-stat-val" id="hero-stat-funds">—</span>
+              <span class="hero-stat-label">Funds analysed</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-val" id="hero-stat-accuracy">—</span>
+              <span class="hero-stat-label">Classifier accuracy</span>
+            </div>
+            <div class="hero-stat-item">
+              <span class="hero-stat-val">4</span>
+              <span class="hero-stat-label">Risk tiers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── VIEW: ONBOARDING ──────────────────────────────────────────────── -->
+    <section id="view-onboarding" class="hidden" aria-label="Risk profiler">
+      <div class="onboarding-inner inner">
+        <div class="onb-progress">
+          <div class="onb-progress-bar" id="onboarding-progress-bar"></div>
+        </div>
+        <div id="onboarding-question"></div>
+      </div>
+    </section>
+
+    <!-- ── VIEW: RESULTS ─────────────────────────────────────────────────── -->
+    <section id="view-results" class="hidden" aria-label="Recommendation results">
+      <!-- Content injected by results.js -->
+    </section>
+
+    <!-- ── VIEW: PORTFOLIO ───────────────────────────────────────────────── -->
+    <section id="view-portfolio" class="hidden" aria-label="Portfolio analysis">
+      <!-- Content injected by portfolio.js -->
+    </section>
+
+    <!-- ── VIEW: WHAT-IF ─────────────────────────────────────────────────── -->
+    <section id="view-whatif" class="hidden" aria-label="What-if analyser">
+      <!-- Content injected by whatif.js -->
+    </section>
+
+  </main>
+
+  <!-- ─── DETAIL OVERLAY (fund expand) ────────────────────────────────────── -->
+  <div id="detail-overlay" class="hidden" role="dialog" aria-modal="true" aria-label="Fund detail">
+    <!-- Content injected by detail.js -->
+  </div>
+
+  <!-- ─── COMPARE PANEL ───────────────────────────────────────────────────── -->
+  <div id="compare-panel" class="hidden" role="dialog" aria-modal="true" aria-label="Fund comparison">
+    <!-- Content injected by compare.js -->
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SCRIPTS — load order matters
+       ═════════════════════════════════════════════════════════════════════ -->
+
+  <!-- GSAP core + plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+
+  <!-- Register GSAP plugins -->
+  <script>gsap.registerPlugin(ScrollTrigger, Flip);</script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+
+  <!-- jsPDF (PDF export) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- App scripts — order: config → api → utils → animations → components → app -->
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/hero.js"></script>
+  <script src="js/onboarding.js"></script>
+  <script src="js/results.js"></script>
+  <script src="js/detail.js"></script>
+  <script src="js/compare.js"></script>
+  <script src="js/portfolio.js"></script>
+  <script src="js/whatif.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Lucide icon init (after DOM parse) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
