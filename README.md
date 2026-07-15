@@ -15,7 +15,7 @@ Make sure you have **Python 3.9+** and `pip` installed on your system.
 
 ### Local Installation & Setup
 
-1. **Clone the repository** (or download and extract).
+1. **Clone the repository** (https://github.com/PreetRX200/Mutual-Fund-Risk-Assessment-.git).
 2. **Create a virtual environment**:
    ```bash
    python -m venv venv
