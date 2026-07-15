@@ -1,0 +1,18 @@
+# Python environments
+venv/
+env/
+__pycache__/
+*.pyc
+
+# IDEs / Os
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary outputs / Logs
+debug_*.txt
+keys.txt
+metrics.json
+metrics_types.json
+
+# (Note: Data & models are deliberately tracked to allow for out-of-the-box local usage!)
